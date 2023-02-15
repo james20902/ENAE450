@@ -5,15 +5,18 @@ from termcolor import colored
 
 def binary_search():
     while True:
-        desired = int(input("give number "))
+        desired = int(input("give number: "))
         if desired < 1000 and desired > 0:
             break
 
     values = []
     for x in range(0, 101):
         values.append(random.randrange(0, 1000))
+    print(values)
     values.sort()
     print(values)
+
+    print("looking for " + str(desired))
 
     l = 0
     r = len(values) - 1
@@ -22,17 +25,20 @@ def binary_search():
     while l <= r:
         c = (l + r) // 2
         if values[c] == desired:
+            print("TRUE")
             return True
         elif values[c] < desired:
             l = c + 1
         elif values[c] > desired:
             r = c - 1
 
+    print("FALSE")
     return False
 
 
 def wordle():
-    wordlist = ["apple", "banaa"]
+    wordlist = ["apple", "tweak", "spans", "logos", "gland",
+                "twice", "climb", "crash", "print", "zebra"]
     # process word list
     processed_word_list = {}
     for w in wordlist:
@@ -41,7 +47,7 @@ def wordle():
     # enter game loop
     while True:
         # init for turn
-        selection = wordlist[random.randrange(0, len(wordlist) - 1)]
+        selection = wordlist[random.randrange(0, len(wordlist))]
         turns = 0
         print("New word selected, good luck!")
 
@@ -76,7 +82,6 @@ def validate_guess(selection, guess):
     # for each character
     for x in range(5):
         not_present = True
-        print(char_counter)
         # if we have an index list and its not empty
         if char_counter.get(g[x]) != None and char_counter[g[x]] != []:
             # iterate through the index list
@@ -112,5 +117,5 @@ def get_char_table(word):
 
 
 if __name__ == "__main__":
-    # binary_search()
+    binary_search()
     wordle()
